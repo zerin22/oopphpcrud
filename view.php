@@ -14,15 +14,14 @@
                         if(isset($_GET['id']) && is_numeric($_GET['id'])){
                             $id = $_GET['id'];
                             
-                            $sql = "SELECT * FROM `posts` WHERE `id` = $id";
                             
-                            $result = $conn->query($sql);
+                            $getPost = $post->viewSinglePost($id);
 
-                            if($result->num_rows > 0)
+                            if($getPost != NULL)
                             {
-                                $data = $result->fetch_assoc();
+                                $data = $getPost->fetch_assoc();
                     ?>
-                            <img src="assets/img/<?php echo $data['image']; ?>" alt="" class="img-fluid">
+                            <img src="assets/img/post.jpg" alt="" class="img-fluid">
                             <hr>
                             <div>
                                 <h6 class="text-center">

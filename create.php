@@ -1,20 +1,31 @@
 <?php
     include_once('header.php');
+
+    if($_SERVER['REQUEST_METHOD'] == 'POST' || isset($_POST['create_post']))
+    {
+        $createPost = $post->createPost($_POST, $_FILES);
+    }
 ?>
   <body>
     <div class="container">
         <div class="row">
             <div class="col-6 offset-3">
                 <div>
+                    <?php
+                        if(isset($createPost))
+                        {
+                            echo $createPost;
+                        }
+                    ?>
                     <div class="mt-5">
                         <a href="index.php" class="d-block text-right">All Posts</a>
                     </div>
                     
                     
-                    <form action="create.php" method="POST" enctype="multipart/form-data">
+                    <form action="" method="POST" enctype="multipart/form-data">
                         <div class="form-group">
-                            <label for="postTitle">Post Title</label>
-                            <input id="postTitle" class="form-control" type="text" name="post_title" placeholder="Post Title" required>
+                            <label for="postTitle">Post Title <span class="text-warning">*</span></label>
+                            <input id="postTitle" class="form-control" type="text" name="post_title" placeholder="Post Title">
                         </div>
 
                         <div class="form-group">
@@ -23,8 +34,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="postImage">Image</label>
-                            <input id="postImage" class="form-control" type="file" name="post_image" placeholder="Post Image" required>
+                            <label for="postImage">Image <span class="text-warning">*</span></label>
+                            <input id="postImage" class="form-control" type="file" name="post_image" placeholder="Post Image">
                            </div>
 
                         <div class="form-group">

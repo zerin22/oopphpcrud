@@ -1,10 +1,25 @@
 <?php
     include_once('header.php');
+
+    //isset function checking if the veriable is set or not
+    if(isset($_GET['id']))
+    {
+        $id = $_GET['id'];
+
+        $deletePost = $post->deleteSinglePost($id);
+    }
 ?>
   <body>
     <div class="container">
         <div class="row">
             <div class="col-10 offset-1">
+                <?php
+                    //isset function checking if the veriable is set or not
+                    if(isset($deletePost))
+                    {
+                        print_r($deletePost);
+                    }
+                ?>
                 <div class="mt-5 float-right">
                     <a href="create.php">New Post</a>
                 </div>
@@ -23,12 +38,12 @@
                             {
                     ?>
                                 <tr>
-                                    <td>  </td>
-                                    <td>  </td>                            
+                                    <td> <?php echo $data['title']; ?> </td>
+                                    <td> <?php echo $data['description']; ?> </td>                            
                                     <td>
-                                        <a href="view.php?id=" class="btn btn-primary">View</a> | 
-                                        <a href="edit.php?id=" class="btn btn-warning">Edit</a> | 
-                                        <a href="delete.php?id=" class="btn btn-danger">Delete</a>
+                                        <a href="view.php?id=<?php echo $data['id']; ?>" class="btn btn-primary">View</a> | 
+                                        <a href="edit.php?id=<?php echo $data['id']; ?>" class="btn btn-warning">Edit</a> | 
+                                        <a href="?id=<?php echo $data['id']; ?>" class="btn btn-danger">Delete</a>
                                     </td>
                                 </tr>
                     <?PHP            
